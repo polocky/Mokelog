@@ -8,7 +8,7 @@
 <div class="section">
 <label for="description">説明</label>
 <textarea name="description"></textarea>
-<p class="ex">例）ジャッキーチェン主演のアクション超大作！</p>
+<p class="ex">例）ジャッキーチェン主演のアクション超大作！ livedoor Wiki記法も使えるよ！</p>
 </div><!-- /section -->
 
 <div class="button"><input type="submit" value="プロジェクトの記録を開始！" /></div>

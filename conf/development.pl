@@ -9,6 +9,6 @@
         }
     },
     'auth' => {
-        'htpasswd_file' => "__path_to(conf/.htpasswd)__",
+        'htpasswd_file' => "__path_to(var/.htpasswd)__",
     },
 }

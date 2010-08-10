@@ -12,6 +12,22 @@ sub endpoint :Chained('/cms/project/event/endpoint') :PathPart('response') :Capt
     return 1;
 }
 
+sub delete :Chained('endpoint') {
+	my ( $self , $c ) = @_;
+    my $response_obj = $c->stash->{response_obj};
+    $c->detach('/error') unless $response_obj->created_by eq $c->req->user;
+    if( $c->req->method eq 'POST' ) {
+        $c->detach('do_delete');
+    }
+}
+sub do_delete : Private {
+    my ( $self , $c ) = @_;
+    my $response_obj = $c->stash->{response_obj};
+    my $project_obj = $c->stash->{project_obj};
+    $response_obj->remove;
+    $c->redirect('/project/' . $project_obj->id . '/' );
+}
+
 sub add :Chained('/cms/project/event/endpoint') :PathPart('response/add') { 
 	my ( $self , $c ) = @_;
     if( $c->req->method eq 'POST' ) {
@@ -24,7 +40,7 @@ sub do_add : Private {
     my $event_obj = $c->stash->{event_obj} ;
     my $form 
         = $c->form({
-            required => [qw/description/],
+            required => [qw/description icon/],
         });
     return if $form->has_error ;
     my $v = $form->valid;

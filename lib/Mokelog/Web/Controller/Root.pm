@@ -13,7 +13,7 @@ sub default : Path {
 
 sub index : Path : Args(0) {
     my ( $self, $c ) = @_;
-    my @project_objs = Mokelog::Data::Project->search({});
+    my @project_objs = Mokelog::Data::Project->search({},{ sort => 'updated_at' ,direction => 'descend' });
     $c->stash->{project_objs} = \@project_objs;
 }
 sub error : Private {

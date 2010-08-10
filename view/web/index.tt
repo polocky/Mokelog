@@ -1,9 +1,17 @@
 [% INCLUDE header.inc %]
-<ul>
+<div id="project">
+
+<h2>プロジェクトリスト</h2>
+<p>現在以下のプロジェクトの歴史が作られています</p>
+
+<ul class="project-list">
 [% FOREACH project_obj IN project_objs %]
 <li><a href="/project/[% project_obj.id %]/">[% project_obj.title | html %]</a>[<a href="/cms/project/[% project_obj.id %]/edit/">edit</a>]</li>
 [% END %]
 </ul>
+</div><!-- /project -->
+</div><!-- /content -->
+
 <div class="link"><a href="/cms/project/add/">新しくプロジェクトの記録を作る</a></div>
 
 [% INCLUDE footer.inc %]

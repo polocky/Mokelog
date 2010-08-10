@@ -1,11 +1,5 @@
 [% INCLUDE header.inc %]
-<div>
-<h3>[% project_obj.title | html %]</h3>
-<p>[% project_obj.description | html %]</p>
-<br />
-<br />
-<br />
-</div>
+
 <div id="output-history">
 <h2>プロジェクトのあゆみ</h2>
 <table>
@@ -16,15 +10,25 @@
 <td>
 <h3>[% event_obj.title | html %] by [% event_obj.created_by %]</h3>
 <p>[% event_obj.description | html %]</p>
-<h4>この出来事に反応する</h4>
-<form method="post" action="/cms/project/[% project_obj.id %]/event/[% event_obj.id %]/response/add/">
-    <input type="text" name="description" value="" class="text" /><input type="submit" value="送信" class="button" />
-</form>
 <ul>
 [% FOREACH response_obj IN event_obj.response_objs %]
-<li>[% response_obj.created_by %]「[% response_obj.description | html %]」</li>
+<li><img src="[% response_obj.icon_path %]" /> [% response_obj.created_by %]「[% response_obj.description | html %]」[% IF response_obj.created_by == c.req.user %][<a href="javascript:postDelete('/cms/project/[% project_obj.id %]/event/[% response_obj.event_id %]/response/[% response_obj.id %]/delete/');">x</a>][% END %]</li>
 [% END %]
 </ul>
+<h4>この出来事に反応する</h4>
+<form method="post" action="/cms/project/[% project_obj.id %]/event/[% event_obj.id %]/response/add/">
+    <input type="text" name="description" value="" class="text" />
+    <select name="icon">
+    <option value="1">乾杯</option>
+    <option value="2">！</option>
+    <option value="3">ピース</option>
+    <option value="4">ネコ</option>
+    <option value="5">メガネ</option>
+    <option value="6">しょんぼり</option>
+    <option value="7">ポワン</option>
+    </select>
+    <input type="submit" value="送信" class="button" />
+</form>
 </td>
 </tr>
 
@@ -52,4 +56,12 @@
 </form>
 </div><!-- /input-history -->
 
+<form method="post" id="response-delete-form"></form>
+<script>
+function postDelete(action){
+    var form = document.getElementById("response-delete-form");
+    form.action = action;
+    form.submit();
+}
+</script>
 [% INCLUDE footer.inc %]

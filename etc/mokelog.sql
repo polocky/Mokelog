@@ -20,6 +20,7 @@ create table response (
     response_id integer NOT NULL PRIMARY KEY,
     event_id integer NOT NULL,
     description text NOT NULL,
+    icon integer NOT NULL default 0,
     created_by varchar(255) NOT NULL,
     created_at datetime NOT NULL,
     updated_at timestamp NOT NULL

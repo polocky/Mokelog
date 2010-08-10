@@ -11,21 +11,40 @@
 <link rel="help" href="" title="" />
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 <link rel="Shortcut Icon" type="img/x-icon" href="/img/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/static/wiki/css/cpan-like.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 <script type="text/javascript" src=""></script>
 
 </head>
 <body>
-<div id="header">
 <div id="container">
+
+[% IF project_obj %]
+<div id="header">
+<div id="global-header"><a href="/">モケログ「プロジェクト見守るくん」</a></div>
 [% IF c.req.user %]
 <div id="login"><span>[% c.req.user %]ちゃん</span></div>
 [% ELSE %]
 <div id="login"><a href="/cms/">ログイン</a></div>
 [% END %]
-<div id="header">
 <div id="site-title">
-<h1>プロジェクト見守るくん（仮）</h1>
-<p>プロジェクトの歴史的経緯を記録していくこころみだよー。</p>
+<h1>[% project_obj.title | html %]</h1>
+[% project_obj.sexy_description %]
 </div><!-- /site-title -->
 </div><!-- /header -->
+[% ELSE %]
+<div id="header">
+[% IF c.req.user %]
+<div id="login"><span>[% c.req.user %]ちゃん</span></div>
+[% ELSE %]
+<div id="login"><a href="/cms/">ログイン</a></div>
+[% END %]
+<div id="site-title">
+<h1>モケログ「プロジェクト見守るくん」</h1>
+<p>いま進めている仕事の出来事をちゃくちゃくと記録していくお手伝いします</p>
+</div><!-- /site-title -->
+</div><!-- /header -->
+[% END %]
+
+
+<div id="content">
