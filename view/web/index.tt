@@ -10,8 +10,9 @@
 [% END %]
 </ul>
 </div><!-- /project -->
-</div><!-- /content -->
 
 <div class="link"><a href="/cms/project/add/">新しくプロジェクトの記録を作る</a></div>
+</div><!-- /content -->
+
 
 [% INCLUDE footer.inc %]
