@@ -1,0 +1,11 @@
+[% INCLUDE header.inc %]
+
+<div id="content">
+<div id="entry-project" class="form-section">
+<form method="post" action="/cms/project/add/">
+[% INCLUDE cms/project/form.inc %]
+</form>
+</div><!-- /entry-project -->
+</div><!-- /content -->
+
+[% INCLUDE footer.inc %]

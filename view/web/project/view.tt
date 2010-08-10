@@ -1,0 +1,55 @@
+[% INCLUDE header.inc %]
+<div>
+<h3>[% project_obj.title | html %]</h3>
+<p>[% project_obj.description | html %]</p>
+<br />
+<br />
+<br />
+</div>
+<div id="output-history">
+<h2>プロジェクトのあゆみ</h2>
+<table>
+
+[% FOREACH event_obj IN event_objs %]
+<tr>
+<th>[% event_obj.created_at %]</th>
+<td>
+<h3>[% event_obj.title | html %] by [% event_obj.created_by %]</h3>
+<p>[% event_obj.description | html %]</p>
+<h4>この出来事に反応する</h4>
+<form method="post" action="/cms/project/[% project_obj.id %]/event/[% event_obj.id %]/response/add/">
+    <input type="text" name="description" value="" class="text" /><input type="submit" value="送信" class="button" />
+</form>
+<ul>
+[% FOREACH response_obj IN event_obj.response_objs %]
+<li>[% response_obj.created_by %]「[% response_obj.description | html %]」</li>
+[% END %]
+</ul>
+</td>
+</tr>
+
+[% END %]
+</table>
+</div><!-- /output-history -->
+
+<div id="input-history" class="form-section">
+<form method="post" action="/cms/project/[% project_obj.id %]/event/add/">
+<div class="section">
+<label for="title">何が起こったのか報告してください（必須）</label>
+<input type="text" name="title" value="" class="check" />
+<p class="ex">例）プロジェクト始動！</p>
+</div><!-- /section -->
+
+<div class="section">
+<label for="description">更に詳しく！</label>
+<textarea name="description"></textarea>
+
+<p class="ex">例）言った言わないの争いが嫌だと愚痴っていて思いついたんだよね。</p>
+</div><!-- /section -->
+
+<div class="button"><input type="submit" value="歴史をきざむ！" /></div>
+
+</form>
+</div><!-- /input-history -->
+
+[% INCLUDE footer.inc %]

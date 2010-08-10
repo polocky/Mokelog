@@ -1,0 +1,4 @@
+[% INCLUDE header.inc %]
+[% INCLUDE fvl.inc %]
+<a href="javascript:history.back()">戻る</a>
+[% INCLUDE footer.inc %]
