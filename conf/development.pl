@@ -1,11 +1,10 @@
 +{
     database => {
-        'dsn' => 'dbi:SQLite:/home/polocky/github/Mokelog/var/mokelog.db',
+        'dsn' => 'dbi:SQLite:/usr/local/mokelog/mokelog/var/mokelog.db',
         'username' => '',
         'password' => '',
         'connect_options' => {
             sqlite_unicode => 1,
-            unicode => 1,
         }
     },
     'auth' => {

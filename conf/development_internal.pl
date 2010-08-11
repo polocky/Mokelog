@@ -1,3 +1,6 @@
+use strict;
+use warnings;
+use utf8;
 use Mokelog::Utils;
 return +{
     default => {
@@ -33,7 +36,7 @@ return +{
             }
         },
         'plugins' => [
-            'Polocky::WAF::CatalystLike::Plugin::ShowDispatcher',
+#            'Polocky::WAF::CatalystLike::Plugin::ShowDispatcher',
             'Mokelog::WAF::Plugin::FillInForm',
         {
             'Mokelog::WAF::Plugin::FVL' => {
