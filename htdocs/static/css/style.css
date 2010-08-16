@@ -287,3 +287,12 @@ div.link {
     display: inline-table;
 }/* end */
 
+
+div.box-open {
+    display:block;
+}
+
+div.box-close {
+    display:none;
+}
+

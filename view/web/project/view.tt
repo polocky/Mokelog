@@ -1,14 +1,15 @@
 [% INCLUDE header.inc %]
 
 <div id="output-history">
-<h2>プロジェクトのあゆみ</h2>
+<h2>プロジェクトのあゆみ <a href="javascript:Mokelog.toggleAll();">■</a></h2>
 <table>
 
 [% FOREACH event_obj IN event_objs %]
 <tr>
 <th>[% event_obj.created_at %]</th>
 <td>
-<h3>[% event_obj.title | html %] by [% event_obj.created_by %]</h3>
+<h3>[% event_obj.title | html %] by [% event_obj.created_by %] <a href="javascript:Mokelog.toggle('box-[% event_obj.id %]');">■</a></h3>
+<div id="box-[% event_obj.id %]" class="box-open">
 [% event_obj.sexy_description %]
 <ul>
 [% FOREACH response_obj IN event_obj.response_objs %]
@@ -29,6 +30,7 @@
     </select>
     <input type="submit" value="送信" class="button" />
 </form>
+</div>
 </td>
 </tr>
 
