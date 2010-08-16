@@ -22,4 +22,10 @@ sub response_objs {
     return Mokelog::Data::Response->search({event_id => $self->id},{ sort => 'created_at' ,direction => 'descend' } );
 }
 
+sub sexy_description {
+    my $self = shift;
+    my $text = Mokelog::Text->instance();
+    $text->parse( $self->description , { name => 'event_' . $self->id } );
+}
+
 1;
