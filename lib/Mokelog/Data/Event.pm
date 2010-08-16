@@ -12,10 +12,21 @@ __PACKAGE__->install_properties({
         driver => Mokelog::ObjectDriver->driver,
         });
 
+__PACKAGE__->has_a({ class => 'Mokelog::Data::Project', column => 'project_id' });
+
 __PACKAGE__->setup_alias({
         id => 'event_id',
         });
 
+__PACKAGE__->add_trigger(
+    post_save => sub {
+        my ( $obj,$orig_obj) = @_;
+        my $project_obj = $obj->project_obj;
+        $project_obj->updated_at($obj->updated_at);
+        $project_obj->save;
+        1;
+    }
+);
 
 sub response_objs {
     my $self = shift;

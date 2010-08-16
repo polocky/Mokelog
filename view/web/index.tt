@@ -6,7 +6,7 @@
 
 <ul class="project-list">
 [% FOREACH project_obj IN project_objs %]
-<li><a href="/project/[% project_obj.id %]/">[% project_obj.title | html %]</a>[<a href="/cms/project/[% project_obj.id %]/edit/">edit</a>]</li>
+<li>[% project_obj.updated_at %] <a href="/project/[% project_obj.id %]/">[% project_obj.title | html %]</a>[<a href="/cms/project/[% project_obj.id %]/edit/">edit</a>]</li>
 [% END %]
 </ul>
 </div><!-- /project -->
