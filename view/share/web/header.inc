@@ -30,13 +30,14 @@
 </div><!-- /header -->
 [% ELSE %]
 <div id="header">
+[% IF c.req.user %]
 <div id="login"><span>[% c.req.user %]ちゃん</span><a href="/logout/">ログアウト</a></div>
+[% END %]
 <div id="site-title">
 <h1>モケログ「プロジェクト見守るくん」</h1>
 <p>いま進めている仕事の出来事をちゃくちゃくと記録していくお手伝いします</p>
 </div><!-- /site-title -->
 </div><!-- /header -->
 [% END %]
-
 
 <div id="content">

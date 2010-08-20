@@ -19,8 +19,8 @@ return +{
             },
         },
         {
-            #'module' => '+Mokelog::WAF::Middleware::AuthBasic',
-            'module' => 'Plack::Middleware::Auth::Basic',
+            'module' => '+Mokelog::WAF::Middleware::AuthBasic',
+            #'module' => 'Plack::Middleware::Auth::Basic',
             opts => {
                 authenticator => \&Mokelog::Utils::authenticator,
             },

@@ -1,0 +1,32 @@
+[% INCLUDE header.inc %]
+<div id="project">
+
+<h2>登録</h2>
+<p>basic認証アカウントを登録できます。編集/削除とかはできないけどね！</p>
+
+<div id="register" class="form-section">
+<form method="post" action="/register/">
+[% INCLUDE fvl.inc %]
+<div class="section">
+<label for="user">Basic認証名（必須）<span>livedoor idと同じにするとlivedoorアイコンがでます</span></label>
+<input type="text" name="user" value="" class="check" />
+<p class="ex">例）polocky</p>
+</div><!-- /section -->
+
+<div class="section">
+<label for="password">パスワード（必須）</label>
+<input type="password" name="password" value="" class="check" />
+</div><!-- /section -->
+
+<div class="section">
+<label for="password_confirm">パスワード確認（必須）</label>
+<input type="password" name="password_confirm" value="" class="check" />
+</div><!-- /section -->
+<div class="button"><input type="submit" value="入会！" /></div>
+
+</form>
+</div>
+
+</div><!-- /content -->
+
+[% INCLUDE footer.inc %]

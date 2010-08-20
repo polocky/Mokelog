@@ -22,3 +22,18 @@ setting :
         members :
             rule :
                 - Rule#members
+        user :
+            rule :
+                - String#length :
+                    min : 3
+                    max : 15
+                - String#nonsymbol_ascii:
+                    args:
+                        allow:
+                            - '_'
+        password :
+            rule :
+                - String#length :
+                    min : 4
+                    max : 20
+                - String#ascii

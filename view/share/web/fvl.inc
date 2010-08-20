@@ -2,7 +2,7 @@
 <div id="fvl">
 <ul>
 [% FOREACH e IN form.error_message %]
-    <li>[% e.value %]</li>
+    <li>[% IF e.value %][% e.value %][% ELSE %][% e.key %][% END %]</li>
 [% END %]
 </ul>
 </div>

@@ -4,7 +4,6 @@ use parent qw(Plack::Middleware);
 use Plack::Util::Accessor qw( realm authenticator );
 use Scalar::Util;
 use MIME::Base64;
-use Plack::Request;
 
 sub prepare_app {
     my $self = shift;
@@ -17,27 +16,25 @@ sub prepare_app {
     }
 }
 
+sub is_allow_path_info {
+    my $self = shift;
+    my $path_info = shift;
+    return $path_info =~ /^\/(logout|register)/ ? 1 : 0;
+}
+
 sub call {
     my($self, $env) = @_;
+    return $self->app->($env) if $self->is_allow_path_info($env->{PATH_INFO});
 
-    my $req = Plack::Request->new($env);
-    my $user_from_cookie = $req->cookies->{user};
-    warn $user_from_cookie;
-    $user_from_cookie eq $env->{HTTP_AUTHORIZATION} or return $self->unauthorized;
-    my $auth = $env->{HTTP_AUTHORIZATION};
+    my $auth = $env->{HTTP_AUTHORIZATION}
+        or return $self->unauthorized;
 
-warn 'in';
     if ($auth =~ /^Basic (.*)$/) {
-warn 'in2';
         my($user, $pass) = split /:/, (MIME::Base64::decode($1) || ":");
         $pass = '' unless defined $pass;
         if ($self->authenticator->($user, $pass)) {
-warn 'in3';
             $env->{REMOTE_USER} = $user;
-            my $res = $self->app->($env);
-            $res->cookies->{user} = $user;
-            warn $user;
-            return $res;
+            return $self->app->($env);
         }
     }
 
@@ -57,4 +54,3 @@ sub unauthorized {
 }
 
 1;
-
