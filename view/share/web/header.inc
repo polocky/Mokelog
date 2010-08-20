@@ -22,7 +22,7 @@
 [% IF project_obj %]
 <div id="header">
 <div id="global-header"><a href="/">モケログ「プロジェクト見守るくん」</a></div>
-<div id="login"><span>[% c.req.user %]ちゃん</span><a href="/logout/">ログアウト</a></div>
+<div id="login">[% livedoor_icon(c.req.user) %]<span>[% c.req.user %]ちゃん</span><a href="/logout/">ログアウト</a></div>
 <div id="site-title">
 <h1>[% project_obj.title | html %]</h1>
 [% project_obj.sexy_description %]
@@ -31,7 +31,7 @@
 [% ELSE %]
 <div id="header">
 [% IF c.req.user %]
-<div id="login"><span>[% c.req.user %]ちゃん</span><a href="/logout/">ログアウト</a></div>
+<div id="login">[% livedoor_icon(c.req.user) %]<span>[% c.req.user %]ちゃん</span><a href="/logout/">ログアウト</a></div>
 [% END %]
 <div id="site-title">
 <h1>モケログ「プロジェクト見守るくん」</h1>
