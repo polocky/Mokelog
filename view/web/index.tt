@@ -8,7 +8,7 @@
 [% FOREACH project_obj IN project_objs %]
 [% IF project_obj.is_authorized(c.req.user) %]
 <li>[% project_obj.updated_at %] <a href="/project/[% project_obj.id %]/">[% project_obj.title | html %]</a>[<a href="/cms/project/[% project_obj.id %]/edit/">edit</a>] 
-[% livedoor_icon( project_obj.created_by ) %]</li>
+[% livedoor_icon( project_obj.created_by ) %][% IF project_obj.members %][メンバー制限中][% END %]</li>
 [% END %]
 [% END %]
 </ul>
