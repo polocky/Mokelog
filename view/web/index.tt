@@ -6,7 +6,10 @@
 
 <ul class="project-list">
 [% FOREACH project_obj IN project_objs %]
-<li>[% project_obj.updated_at %] <a href="/project/[% project_obj.id %]/">[% project_obj.title | html %]</a>[<a href="/cms/project/[% project_obj.id %]/edit/">edit</a>]</li>
+[% IF project_obj.is_authorized(c.req.user) %]
+<li>[% project_obj.updated_at %] <a href="/project/[% project_obj.id %]/">[% project_obj.title | html %]</a>[<a href="/cms/project/[% project_obj.id %]/edit/">edit</a>] 
+[% livedoor_icon( project_obj.created_by ) %]</li>
+[% END %]
 [% END %]
 </ul>
 </div><!-- /project -->

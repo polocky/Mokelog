@@ -1,6 +1,8 @@
 rules :
     - String
     - Number
+    - Rule=+Mokelog::FVL::Rule
+
 lang : ja
 setting :
  strict :
@@ -17,3 +19,6 @@ setting :
         icon :
             rule :
                 - Number#int
+        members :
+            rule :
+                - Rule#members

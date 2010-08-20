@@ -7,6 +7,7 @@ use Mokelog::Data::Event;
 sub endpoint :Chained('/') :PathPart('project') :CaptureArgs(1) {
     my ($self, $c, $project_id ) = @_;
     my $project_obj = Mokelog::Data::Project->lookup($project_id) or $c->detach('/error');
+    $project_obj->is_authorized($c->req->user) or $c->detach('/error');
     $c->stash->{project_obj} = $project_obj;
     return 1;
 }

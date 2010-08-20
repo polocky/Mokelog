@@ -22,6 +22,11 @@ sub error : Private {
     $c->res->body('-_-');
 }
 
+sub logout : Local {
+    my ( $self, $c ) = @_;
+    $c->res->cookies->{user} = '';
+}
+
 sub end  :ActionClass('RenderView') {}
 
 __POLOCKY__;
