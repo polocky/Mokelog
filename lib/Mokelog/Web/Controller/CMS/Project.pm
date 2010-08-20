@@ -34,6 +34,7 @@ sub do_edit : Private {
         });
     return if $form->has_error ;
     my $v = $form->valid;
+    $v->{members} ||= '';
     my $project_obj = $c->stash->{project_obj};
     $project_obj->update_from_v( $v );
     $project_obj->save;
