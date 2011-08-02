@@ -16,6 +16,10 @@ __PACKAGE__->setup_alias({
         id => 'project_id',
         });
 
+sub default_values { +{
+    members => '',
+}; }
+
 sub sexy_description {
     my $self = shift;
     my $text = Mokelog::Text->instance();
